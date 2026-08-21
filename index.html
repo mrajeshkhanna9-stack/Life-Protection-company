@@ -192,7 +192,120 @@
     </div>
     <div class="copyright">© <span id="year"></span> Life Protection Company Ltd. All rights reserved.</div>
   </footer>
+<!-- ================= CHAT ASSISTANT ================= -->
 
+<button id="chatButton" class="chat-button" aria-label="Open chat">
+  💬
+</button>
+
+<div id="chatWindow" class="chat-window">
+  <div class="chat-header">
+    <div>
+      <strong>Life Protection Assistant</strong>
+      <small>Online Assistance</small>
+    </div>
+    <button id="closeChat" class="chat-close">×</button>
+  </div>
+
+  <div id="chatMessages" class="chat-messages">
+    <div class="bot-message">
+      Hello! 👋 Welcome to Life Protection Company Ltd.<br><br>
+      How can I help you?
+    </div>
+
+    <div class="quick-buttons">
+      <button onclick="quickChat('life')">Life Insurance</button>
+      <button onclick="quickChat('health')">Health Insurance</button>
+      <button onclick="quickChat('premium')">Premium Calculator</button>
+      <button onclick="quickChat('payment')">Make Payment</button>
+      <button onclick="quickChat('advisor')">Talk to Advisor</button>
+    </div>
+  </div>
+
+  <div class="chat-input-area">
+    <input
+      id="chatInput"
+      type="text"
+      placeholder="Type your question..."
+      autocomplete="off"
+    >
+    <button id="sendChat">➤</button>
+  </div>
+</div>
+
+
+<!-- ================= ONLINE PAYMENT ================= -->
+
+<section class="payment-section" id="payment">
+  <div class="container">
+    <div class="payment-card">
+
+      <span class="eyebrow">ONLINE PAYMENT</span>
+
+      <h2>Pay Your Insurance Premium</h2>
+
+      <p>
+        Make your payment securely through our online payment facility.
+      </p>
+
+      <form id="paymentForm">
+
+        <label>
+          Customer Name
+          <input
+            id="paymentName"
+            type="text"
+            required
+            placeholder="Enter your name"
+          >
+        </label>
+
+        <label>
+          Policy Number
+          <input
+            id="policyNumber"
+            type="text"
+            required
+            placeholder="Enter policy number"
+          >
+        </label>
+
+        <label>
+          Mobile Number
+          <input
+            id="paymentPhone"
+            type="tel"
+            required
+            placeholder="Enter mobile number"
+          >
+        </label>
+
+        <label>
+          Premium Amount (₹)
+          <input
+            id="paymentAmount"
+            type="number"
+            min="1"
+            step="1"
+            required
+            placeholder="Enter amount"
+          >
+        </label>
+
+        <button class="btn" type="submit">
+          Proceed to Secure Payment
+        </button>
+
+      </form>
+
+      <p class="payment-note">
+        You will be redirected to the authorised payment gateway.
+        Payment confirmation is subject to successful gateway verification.
+      </p>
+
+    </div>
+  </div>
+</section>
   <script src="script.js"></script>
 </body>
 </html>
