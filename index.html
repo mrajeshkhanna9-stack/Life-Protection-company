@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Life Protection Company Ltd. - Insurance protection and illustrative premium estimation.">
+  <title>Life Protection Company Ltd. | Insurance Protection</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="watermark">LPC</div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home">
+        <div class="logo" aria-label="Life Protection Company logo">
+          <span>❤</span>
+        </div>
+        <div>
+          <strong>Life Protection</strong>
+          <small>Company Ltd.</small>
+        </div>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+      <nav id="mainNav">
+        <a href="#home">Home</a>
+        <a href="#insurance">Insurance</a>
+        <a href="#calculator">Premium Calculator</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-small" href="#quote">Get a Quote</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">PROTECT • PLAN • SECURE</span>
+          <h1>Protection for every stage of life.</h1>
+          <p>Explore life, health, motor, travel, home, business and other insurance solutions from Life Protection Company Ltd.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#calculator">Calculate Premium</a>
+            <a class="btn btn-outline" href="#insurance">Explore Insurance</a>
+          </div>
+          <p class="microcopy">Premium figures on this demo are illustrative estimates only and are not insurance quotations.</p>
+        </div>
+        <div class="hero-card">
+          <div class="shield">✓</div>
+          <h2>Your protection, our priority.</h2>
+          <p>Get an indicative estimate based on your selected age, coverage and risk factors.</p>
+          <div class="stats">
+            <div><b>10+</b><span>Insurance categories</span></div>
+            <div><b>24/7</b><span>Online enquiry</span></div>
+            <div><b>1</b><span>Protection partner</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="insurance">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">OUR PRODUCTS</span>
+          <h2>Insurance for what matters most</h2>
+          <p>Choose a category to start exploring your protection needs.</p>
+        </div>
+        <div class="cards" id="insuranceCards"></div>
+      </div>
+    </section>
+
+    <section class="section alt" id="calculator">
+      <div class="container calculator-grid">
+        <div>
+          <span class="eyebrow">ESTIMATE</span>
+          <h2>Illustrative premium calculator</h2>
+          <p>Enter your details to see a demonstration estimate. Replace the sample rate table in <code>script.js</code> with approved insurer/product rates before commercial use.</p>
+          <div class="notice">
+            <strong>Important:</strong> This calculator does not provide an insurance quotation, guarantee eligibility, or determine final premium. Final pricing is subject to the applicable insurer's underwriting, policy terms, exclusions and regulatory requirements.
+          </div>
+        </div>
+
+        <form class="calculator" id="premiumForm">
+          <label>Insurance type
+            <select id="insuranceType" required></select>
+          </label>
+          <label>Age
+            <input id="age" type="number" min="18" max="80" value="35" required>
+          </label>
+          <label>Gender
+            <select id="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other / Prefer not to say</option>
+            </select>
+          </label>
+          <label>Coverage amount (₹)
+            <select id="coverage">
+              <option value="500000">5,00,000</option>
+              <option value="1000000" selected>10,00,000</option>
+              <option value="2500000">25,00,000</option>
+              <option value="5000000">50,00,000</option>
+              <option value="10000000">1,00,00,000</option>
+            </select>
+          </label>
+          <label>Policy term
+            <select id="term">
+              <option value="10">10 years</option>
+              <option value="15">15 years</option>
+              <option value="20" selected>20 years</option>
+              <option value="25">25 years</option>
+              <option value="30">30 years</option>
+            </select>
+          </label>
+          <label>Medical / risk condition
+            <select id="condition">
+              <option value="standard">No declared condition</option>
+              <option value="controlled">Controlled / minor condition</option>
+              <option value="major">Major / multiple conditions</option>
+            </select>
+          </label>
+          <label class="check"><input id="smoker" type="checkbox"> Tobacco / smoker loading</label>
+          <button class="btn" type="submit">Estimate Premium</button>
+          <div id="premiumResult" class="result" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" id="why-us">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">WHY LIFE PROTECTION</span>
+          <h2>A simple way to start your insurance journey</h2>
+        </div>
+        <div class="features">
+          <article><span>01</span><h3>Understand</h3><p>Learn what each type of cover is designed to protect.</p></article>
+          <article><span>02</span><h3>Estimate</h3><p>Use the illustrative calculator to understand possible pricing factors.</p></article>
+          <article><span>03</span><h3>Compare</h3><p>Discuss available plans, coverage, exclusions and benefits with an advisor.</p></article>
+          <article><span>04</span><h3>Protect</h3><p>Submit a formal proposal through the appropriate insurer and process.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="quote">
+      <div class="container form-grid">
+        <div>
+          <span class="eyebrow">GET IN TOUCH</span>
+          <h2>Request an insurance consultation</h2>
+          <p>Tell us what you are looking for. This demo form validates the information locally; connect it to a secure form/backend before collecting real customer or medical data.</p>
+          <div class="contact-box">
+            <p><strong>Life Protection Company Ltd.</strong></p>
+            <p>Suncity, Bandlaguda, Opposite Pantaloons, 500091</p>
+            <p>Phone: <a href="tel:9059056219">9059056219</a></p>
+            <p>Email: <a href="mailto:mrajeshkhanna9@gmail.com">mrajeshkhanna9@gmail.com</a></p>
+          </div>
+        </div>
+
+        <form id="quoteForm" class="quote-form">
+          <label>Full name<input id="fullName" required></label>
+          <label>Phone<input id="phone" type="tel" pattern="[0-9+ ()-]{10,}" required></label>
+          <label>Email<input id="email" type="email" required></label>
+          <label>Insurance interest
+            <select id="quoteType" required></select>
+          </label>
+          <label>Message<textarea id="message" rows="5" placeholder="Tell us about your insurance requirement"></textarea></label>
+          <button class="btn" type="submit">Submit Enquiry</button>
+          <p id="quoteMessage" class="success" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand footer-brand">
+          <div class="logo"><span>❤</span></div>
+          <div><strong>Life Protection</strong><small>Company Ltd.</small></div>
+        </div>
+        <p>Insurance protection made easier to understand.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>Suncity, Bandlaguda<br>Opposite Pantaloons, 500091</p>
+        <p><a href="tel:9059056219">9059056219</a><br><a href="mailto:mrajeshkhanna9@gmail.com">mrajeshkhanna9@gmail.com</a></p>
+      </div>
+      <div>
+        <h3>Disclaimer</h3>
+        <p class="small">This website template is for demonstration. Product availability, rates, benefits, exclusions and eligibility must be verified with the relevant licensed insurer and current policy documents.</p>
+      </div>
+    </div>
+    <div class="copyright">© <span id="year"></span> Life Protection Company Ltd. All rights reserved.</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
