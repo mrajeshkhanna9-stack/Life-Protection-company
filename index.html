@@ -70,62 +70,453 @@
       </div>
     </section>
 
-    <section class="section alt" id="calculator">
-      <div class="container calculator-grid">
-        <div>
-          <span class="eyebrow">ESTIMATE</span>
-          <h2>Illustrative premium calculator</h2>
-          <p>Enter your details to see a demonstration estimate. Replace the sample rate table in <code>script.js</code> with approved insurer/product rates before commercial use.</p>
-          <div class="notice">
-            <strong>Important:</strong> This calculator does not provide an insurance quotation, guarantee eligibility, or determine final premium. Final pricing is subject to the applicable insurer's underwriting, policy terms, exclusions and regulatory requirements.
-          </div>
-        </div>
+   <section class="section alt" id="calculator">
+
+  <div class="container">
+
+    <div class="section-heading">
+      <span class="eyebrow">PREMIUM & PAYMENT</span>
+      <h2>Calculate, Pay & Get Assistance</h2>
+      <p>
+        Estimate your premium, make an online payment,
+        or ask our insurance assistant for help.
+      </p>
+    </div>
+
+
+    <!-- CALCULATOR + PAYMENT -->
+
+    <div class="service-grid">
+
+
+      <!-- PREMIUM CALCULATOR -->
+
+      <div class="service-card">
+
+        <div class="service-icon">🧮</div>
+
+        <h2>Premium Calculator</h2>
+
+        <p class="service-description">
+          Get an illustrative premium estimate based on
+          your selected insurance details.
+        </p>
 
         <form class="calculator" id="premiumForm">
-          <label>Insurance type
+
+          <label>
+            Insurance Type
             <select id="insuranceType" required></select>
           </label>
-          <label>Age
-            <input id="age" type="number" min="18" max="80" value="35" required>
+
+          <label>
+            Age
+            <input
+              id="age"
+              type="number"
+              min="18"
+              max="80"
+              value="35"
+              required
+            >
           </label>
-          <label>Gender
+
+          <label>
+            Gender
+
             <select id="gender">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other / Prefer not to say</option>
+
+              <option value="male">
+                Male
+              </option>
+
+              <option value="female">
+                Female
+              </option>
+
+              <option value="other">
+                Other / Prefer not to say
+              </option>
+
             </select>
+
           </label>
-          <label>Coverage amount (₹)
+
+
+          <label>
+            Coverage Amount
+
             <select id="coverage">
-              <option value="500000">5,00,000</option>
-              <option value="1000000" selected>10,00,000</option>
-              <option value="2500000">25,00,000</option>
-              <option value="5000000">50,00,000</option>
-              <option value="10000000">1,00,00,000</option>
+
+              <option value="500000">
+                ₹5,00,000
+              </option>
+
+              <option value="1000000" selected>
+                ₹10,00,000
+              </option>
+
+              <option value="2500000">
+                ₹25,00,000
+              </option>
+
+              <option value="5000000">
+                ₹50,00,000
+              </option>
+
+              <option value="10000000">
+                ₹1,00,00,000
+              </option>
+
             </select>
+
           </label>
-          <label>Policy term
+
+
+          <label>
+            Policy Term
+
             <select id="term">
-              <option value="10">10 years</option>
-              <option value="15">15 years</option>
-              <option value="20" selected>20 years</option>
-              <option value="25">25 years</option>
-              <option value="30">30 years</option>
+
+              <option value="10">
+                10 years
+              </option>
+
+              <option value="15">
+                15 years
+              </option>
+
+              <option value="20" selected>
+                20 years
+              </option>
+
+              <option value="25">
+                25 years
+              </option>
+
+              <option value="30">
+                30 years
+              </option>
+
             </select>
+
           </label>
-          <label>Medical / risk condition
+
+
+          <label>
+            Medical / Risk Condition
+
             <select id="condition">
-              <option value="standard">No declared condition</option>
-              <option value="controlled">Controlled / minor condition</option>
-              <option value="major">Major / multiple conditions</option>
+
+              <option value="standard">
+                No declared condition
+              </option>
+
+              <option value="controlled">
+                Controlled / minor condition
+              </option>
+
+              <option value="major">
+                Major / multiple conditions
+              </option>
+
             </select>
+
           </label>
-          <label class="check"><input id="smoker" type="checkbox"> Tobacco / smoker loading</label>
-          <button class="btn" type="submit">Estimate Premium</button>
-          <div id="premiumResult" class="result" aria-live="polite"></div>
+
+
+          <label class="check">
+
+            <input
+              id="smoker"
+              type="checkbox"
+            >
+
+            Tobacco / smoker
+
+          </label>
+
+
+          <button
+            class="btn"
+            type="submit"
+          >
+            Calculate Premium
+          </button>
+
+
+          <div
+            id="premiumResult"
+            class="result"
+            aria-live="polite"
+          ></div>
+
         </form>
+
+        <div class="notice">
+
+          <strong>Important:</strong>
+
+          This calculator provides an illustrative
+          estimate only. Final premium, eligibility,
+          coverage and acceptance are subject to the
+          applicable insurer's underwriting and policy
+          terms.
+
+        </div>
+
       </div>
-    </section>
+
+
+
+      <!-- ONLINE PAYMENT -->
+
+      <div class="service-card payment-card">
+
+        <div class="service-icon">💳</div>
+
+        <h2>Online Premium Payment</h2>
+
+        <p class="service-description">
+
+          Pay your insurance premium online through
+          our authorised payment gateway.
+
+        </p>
+
+
+        <form id="paymentForm">
+
+
+          <label>
+
+            Customer Name
+
+            <input
+              id="paymentName"
+              type="text"
+              placeholder="Enter your full name"
+              required
+            >
+
+          </label>
+
+
+          <label>
+
+            Policy Number
+
+            <input
+              id="policyNumber"
+              type="text"
+              placeholder="Enter policy number"
+              required
+            >
+
+          </label>
+
+
+          <label>
+
+            Mobile Number
+
+            <input
+              id="paymentPhone"
+              type="tel"
+              placeholder="Enter mobile number"
+              required
+            >
+
+          </label>
+
+
+          <label>
+
+            Premium Amount
+
+            <div class="amount-input">
+
+              <span>₹</span>
+
+              <input
+                id="paymentAmount"
+                type="number"
+                min="1"
+                step="1"
+                placeholder="Enter amount"
+                required
+              >
+
+            </div>
+
+          </label>
+
+
+          <button
+            class="btn payment-btn"
+            type="submit"
+          >
+
+            🔒 Proceed to Secure Payment
+
+          </button>
+
+
+        </form>
+
+
+        <div class="payment-security">
+
+          <span>🔒</span>
+
+          <div>
+
+            <strong>Secure Payment</strong>
+
+            <p>
+              You will be redirected to the
+              authorised payment gateway.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <p class="payment-note">
+
+          Please verify your policy number and
+          payment amount before proceeding.
+
+        </p>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- CHAT ASSISTANCE IN MIDDLE OF PAGE -->
+
+    <div class="chat-assistance-section">
+
+      <div class="chat-assistance-header">
+
+        <div class="chat-assistant-icon">
+          💬
+        </div>
+
+        <div>
+
+          <span class="eyebrow">
+            CHAT ASSISTANCE
+          </span>
+
+          <h2>
+            How can we help you?
+          </h2>
+
+          <p>
+            Ask our Life Protection Assistant
+            about insurance, premiums, payments
+            or contacting an advisor.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="chat-box">
+
+        <div
+          id="chatMessages"
+          class="chat-messages"
+        >
+
+          <div class="bot-message">
+
+            <strong>
+              Life Protection Assistant
+            </strong>
+
+            <br><br>
+
+            Hello! 👋
+
+            <br>
+
+            Welcome to Life Protection Company Ltd.
+
+            <br><br>
+
+            How can I help you today?
+
+          </div>
+
+
+          <div class="quick-buttons">
+
+            <button
+              onclick="quickChat('life')"
+            >
+              ❤️ Life Insurance
+            </button>
+
+            <button
+              onclick="quickChat('health')"
+            >
+              🏥 Health Insurance
+            </button>
+
+            <button
+              onclick="quickChat('premium')"
+            >
+              🧮 Premium
+            </button>
+
+            <button
+              onclick="quickChat('payment')"
+            >
+              💳 Payment
+            </button>
+
+            <button
+              onclick="quickChat('advisor')"
+            >
+              👨‍💼 Talk to Advisor
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="chat-input-area">
+
+          <input
+            id="chatInput"
+            type="text"
+            placeholder="Type your question..."
+            autocomplete="off"
+          >
+
+          <button
+            id="sendChat"
+            type="button"
+          >
+            ➤
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
     <section class="section" id="why-us">
       <div class="container">
