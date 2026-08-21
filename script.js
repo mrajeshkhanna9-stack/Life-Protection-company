@@ -111,6 +111,322 @@ document.getElementById("menuBtn").addEventListener("click", ()=>{
 document.querySelectorAll("#mainNav a").forEach(a=>a.addEventListener("click",()=>{
   document.getElementById("mainNav").classList.remove("open");
 }));
+/* =====================================================
+   CHAT ASSISTANT
+   ===================================================== */
+
+const chatButton = document.getElementById("chatButton");
+const chatWindow = document.getElementById("chatWindow");
+const closeChat = document.getElementById("closeChat");
+const sendChat = document.getElementById("sendChat");
+const chatInput = document.getElementById("chatInput");
+const chatMessages = document.getElementById("chatMessages");
+
+
+chatButton.addEventListener("click", function () {
+    chatWindow.classList.add("active");
+    chatInput.focus();
+});
+
+
+closeChat.addEventListener("click", function () {
+    chatWindow.classList.remove("active");
+});
+
+
+function addChatMessage(message, type) {
+
+    const div = document.createElement("div");
+
+    div.className =
+        type === "user"
+        ? "user-message"
+        : "bot-message";
+
+    div.innerHTML = message;
+
+    chatMessages.appendChild(div);
+
+    chatMessages.scrollTop =
+        chatMessages.scrollHeight;
+}
+
+
+function chatbotResponse(question) {
+
+    const text = question.toLowerCase();
+
+    if (
+        text.includes("life") ||
+        text.includes("term insurance")
+    ) {
+
+        return `
+        <strong>Life Insurance</strong><br><br>
+
+        Life insurance is designed to provide financial
+        protection according to the applicable policy terms.
+
+        <br><br>
+
+        You can use our premium calculator to see an
+        illustrative estimate.
+
+        <br><br>
+
+        <a href="#calculator"
+           onclick="closeChatWindow()">
+           Open Premium Calculator →
+        </a>
+
+        <br><br>
+
+        <small>
+        Final premium and eligibility are subject to
+        insurer underwriting and policy terms.
+        </small>
+        `;
+    }
+
+
+    if (
+        text.includes("health") ||
+        text.includes("medical")
+    ) {
+
+        return `
+        <strong>Health Insurance</strong><br><br>
+
+        Health insurance can provide coverage for eligible
+        medical expenses according to the selected policy.
+
+        <br><br>
+
+        Tell us your requirements and our advisor can
+        help identify appropriate options.
+        `;
+    }
+
+
+    if (
+        text.includes("premium") ||
+        text.includes("price") ||
+        text.includes("cost")
+    ) {
+
+        return `
+        <strong>Premium Calculator</strong><br><br>
+
+        You can estimate a premium using:
+
+        <ul>
+          <li>Age</li>
+          <li>Insurance type</li>
+          <li>Coverage amount</li>
+          <li>Policy term</li>
+          <li>Risk/medical information</li>
+        </ul>
+
+        <a href="#calculator"
+           onclick="closeChatWindow()">
+           Calculate Premium →
+        </a>
+
+        <br><br>
+
+        <small>
+        Calculator results are illustrative and are not
+        insurance quotations.
+        </small>
+        `;
+    }
+
+
+    if (
+        text.includes("payment") ||
+        text.includes("pay") ||
+        text.includes("premium payment")
+    ) {
+
+        return `
+        <strong>Online Payment</strong><br><br>
+
+        You can use our online payment section to
+        proceed to the authorised payment gateway.
+
+        <br><br>
+
+        <a href="#payment"
+           onclick="closeChatWindow()">
+           Make a Payment →
+        </a>
+
+        <br><br>
+
+        Please verify your policy number and amount
+        before making a payment.
+        `;
+    }
+
+
+    if (
+        text.includes("advisor") ||
+        text.includes("agent") ||
+        text.includes("contact")
+    ) {
+
+        return `
+        <strong>Talk to an Advisor</strong><br><br>
+
+        Life Protection Company Ltd.<br>
+        Suncity, Bandlaguda,<br>
+        Opposite Pantaloons, 500091
+
+        <br><br>
+
+        📞 <a href="tel:9059056219">
+        9059056219
+        </a>
+
+        <br>
+
+        ✉ <a href="mailto:mrajeshkhanna9@gmail.com">
+        mrajeshkhanna9@gmail.com
+        </a>
+        `;
+    }
+
+
+    if (
+        text.includes("hello") ||
+        text.includes("hi") ||
+        text.includes("help")
+    ) {
+
+        return `
+        Hello! 👋
+
+        <br><br>
+
+        I can help you with:
+
+        <ul>
+          <li>Life Insurance</li>
+          <li>Health Insurance</li>
+          <li>Premium estimates</li>
+          <li>Online payment</li>
+          <li>Advisor contact</li>
+        </ul>
+
+        What would you like to know?
+        `;
+    }
+
+
+    return `
+    Thank you for contacting
+    <strong>Life Protection Company Ltd.</strong>
+
+    <br><br>
+
+    I couldn't find an exact answer to your question.
+
+    <br><br>
+
+    Please call
+    <a href="tel:9059056219">9059056219</a>
+
+    or email
+    <a href="mailto:mrajeshkhanna9@gmail.com">
+    mrajeshkhanna9@gmail.com
+    </a>
+    to speak with an advisor.
+    `;
+}
+
+
+function sendUserMessage() {
+
+    const question =
+        chatInput.value.trim();
+
+    if (!question) return;
+
+    addChatMessage(question, "user");
+
+    chatInput.value = "";
+
+    setTimeout(function () {
+
+        const response =
+            chatbotResponse(question);
+
+        addChatMessage(response, "bot");
+
+    }, 500);
+}
+
+
+sendChat.addEventListener(
+    "click",
+    sendUserMessage
+);
+
+
+chatInput.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+            sendUserMessage();
+        }
+
+    }
+);
+
+
+function quickChat(type) {
+
+    const questions = {
+
+        life:
+        "Tell me about life insurance",
+
+        health:
+        "Tell me about health insurance",
+
+        premium:
+        "How can I calculate my premium?",
+
+        payment:
+        "How can I make a payment?",
+
+        advisor:
+        "I want to talk to an advisor"
+
+    };
+
+    addChatMessage(
+        questions[type],
+        "user"
+    );
+
+    setTimeout(function() {
+
+        addChatMessage(
+            chatbotResponse(questions[type]),
+            "bot"
+        );
+
+    }, 400);
+}
+
+
+function closeChatWindow() {
+
+    chatWindow.classList.remove("active");
+
+}
 
 document.getElementById("year").textContent = new Date().getFullYear();
 populateSelects();
