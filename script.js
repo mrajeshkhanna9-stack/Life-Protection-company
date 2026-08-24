@@ -633,31 +633,3 @@ revealElements.forEach(
 
     }
 );
-
-/* =====================================================
-   LIFE INSURANCE POLICY DOCUMENTS
-===================================================== */
-
-function toggleLifeDocuments() {
-
-    const documents =
-        document.getElementById("lifeDocuments");
-
-    const arrow =
-        document.getElementById("lifeArrow");
-
-    if (documents.classList.contains("show")) {
-
-        documents.classList.remove("show");
-
-        arrow.textContent = "▼";
-
-    } else {
-
-        documents.classList.add("show");
-
-        arrow.textContent = "▲";
-
-    }
-
-}
