@@ -1,433 +1,635 @@
-const insuranceProducts = [
-  {id:"life", icon:"❤", name:"Life Insurance", desc:"Protection for dependants and long-term financial planning."},
-  {id:"health", icon:"✚", name:"Health Insurance", desc:"Medical expense protection for individuals and families."},
-  {id:"motor", icon:"🚗", name:"Motor Insurance", desc:"Cover options for cars, two-wheelers and vehicles."},
-  {id:"travel", icon:"✈", name:"Travel Insurance", desc:"Protection for eligible domestic and international journeys."},
-  {id:"home", icon:"⌂", name:"Home Insurance", desc:"Protection for home structure and eligible contents."},
-  {id:"business", icon:"▣", name:"Business Insurance", desc:"Protection solutions for businesses and commercial risks."},
-  {id:"accident", icon:"🛡", name:"Personal Accident", desc:"Financial protection for eligible accidental events."},
-  {id:"cyber", icon:"⌨", name:"Cyber Insurance", desc:"Protection against eligible cyber-related risks."},
-  {id:"pet", icon:"🐾", name:"Pet Insurance", desc:"Insurance options for eligible veterinary and pet risks."},
-  {id:"crop", icon:"🌾", name:"Crop Insurance", desc:"Agriculture-related protection subject to applicable schemes."}
-];
-
-/*
-  DEMO RATE TABLE ONLY.
-  These are NOT real insurance rates and must not be represented as quotes.
-  Replace with approved product/insurer actuarial or tariff data before launch.
-*/
-const demoBaseRates = {
-  life: {18:.006,25:.007,30:.008,35:.010,40:.013,45:.018,50:.026,55:.038,60:.055,65:.080,70:.110,75:.145,80:.180},
-  health:{18:.012,25:.013,30:.015,35:.017,40:.021,45:.026,50:.034,55:.045,60:.060,65:.078,70:.100,75:.130,80:.160},
-  accident:{18:.003,25:.0035,30:.004,35:.0045,40:.0055,45:.007,50:.009,55:.012,60:.016,65:.022,70:.030,75:.040,80:.055},
-  motor:{18:.025,25:.023,30:.022,35:.021,40:.022,45:.024,50:.026,55:.028,60:.030,65:.033,70:.036,75:.040,80:.045},
-  travel:{18:.004,25:.004,30:.004,35:.005,40:.006,45:.007,50:.009,55:.011,60:.014,65:.018,70:.023,75:.030,80:.040},
-  home:{18:.0025,25:.0025,30:.0026,35:.0027,40:.0029,45:.0031,50:.0034,55:.0037,60:.004,65:.0043,70:.0047,75:.0052,80:.0058},
-  business:{18:.004,25:.004,30:.0042,35:.0045,40:.005,45:.0055,50:.006,55:.0067,60:.0075,65:.0085,70:.010,75:.012,80:.015},
-  cyber:{18:.003,25:.003,30:.0032,35:.0035,40:.004,45:.0046,50:.0053,55:.006,60:.007,65:.008,70:.0095,75:.011,80:.013},
-  pet:{18:.004,25:.0042,30:.0045,35:.0048,40:.0052,45:.0058,50:.0065,55:.0073,60:.0082,65:.0092,70:.0105,75:.012,80:.014},
-  crop:{18:.002,25:.002,30:.002,35:.0021,40:.0022,45:.0024,50:.0026,55:.0029,60:.0032,65:.0036,70:.004,75:.0045,80:.005}
-};
-
-const conditionLoading = {standard:1, controlled:1.20, major:1.60};
-
-function nearestRate(table, age){
-  const ages = Object.keys(table).map(Number).sort((a,b)=>a-b);
-  if(age <= ages[0]) return table[ages[0]];
-  if(age >= ages[ages.length-1]) return table[ages[ages.length-1]];
-  let nearest = ages.reduce((prev,curr)=>Math.abs(curr-age)<Math.abs(prev-age)?curr:prev);
-  return table[nearest];
-}
-
-function money(value){
-  return new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(value);
-}
-
-function populateSelects(){
-  const options = insuranceProducts.map(p=>`<option value="${p.id}">${p.name}</option>`).join("");
-  document.getElementById("insuranceType").innerHTML = options;
-  document.getElementById("quoteType").innerHTML = `<option value="">Select insurance type</option>` + options;
-}
-
-function renderCards(){
-  document.getElementById("insuranceCards").innerHTML = insuranceProducts.map(p=>`
-    <article class="card">
-      <div class="card-icon">${p.icon}</div>
-      <h3>${p.name}</h3>
-      <p>${p.desc}</p>
-      <button type="button" onclick="selectInsurance('${p.id}')">Estimate / Enquire →</button>
-    </article>
-  `).join("");
-}
-
-function selectInsurance(id){
-  document.getElementById("insuranceType").value = id;
-  document.getElementById("quoteType").value = id;
-  document.getElementById("calculator").scrollIntoView({behavior:"smooth"});
-}
-
-function calculatePremium(){
-  const type = document.getElementById("insuranceType").value;
-  const age = Math.max(18, Math.min(80, Number(document.getElementById("age").value)));
-  const coverage = Number(document.getElementById("coverage").value);
-  const term = Number(document.getElementById("term").value);
-  const condition = document.getElementById("condition").value;
-  const smoker = document.getElementById("smoker").checked;
-
-  let rate = nearestRate(demoBaseRates[type], age);
-  let termFactor = 1 + ((term - 10) * 0.012);
-  let genderFactor = document.getElementById("gender").value === "female" ? 0.94 : 1;
-  let smokerFactor = smoker ? 1.35 : 1;
-
-  let annual = coverage * rate * termFactor * genderFactor * conditionLoading[condition] * smokerFactor;
-
-  // Demo minimum to make small products visible in the UI.
-  annual = Math.max(annual, 500);
-
-  document.getElementById("premiumResult").innerHTML =
-    `<div>Illustrative annual premium</div><strong>${money(annual)}</strong>
-     <div class="microcopy">Demo estimate for website testing only. Not a quote or guaranteed premium.</div>`;
-}
-
-document.getElementById("premiumForm").addEventListener("submit", e=>{
-  e.preventDefault();
-  calculatePremium();
-});
-
-document.getElementById("quoteForm").addEventListener("submit", e=>{
-  e.preventDefault();
-  const name = document.getElementById("fullName").value.trim();
-  const type = document.getElementById("quoteType").value;
-  const selected = insuranceProducts.find(p=>p.id===type);
-  document.getElementById("quoteMessage").textContent =
-    `Thank you, ${name}. Your enquiry for ${selected ? selected.name : "insurance"} has been prepared. Connect this form to your secure email/CRM service to actually receive submissions.`;
-  e.target.reset();
-});
-
-document.getElementById("menuBtn").addEventListener("click", ()=>{
-  document.getElementById("mainNav").classList.toggle("open");
-});
-
-document.querySelectorAll("#mainNav a").forEach(a=>a.addEventListener("click",()=>{
-  document.getElementById("mainNav").classList.remove("open");
-}));
 /* =====================================================
-   CHAT ASSISTANT
-   ===================================================== */
+   MOBILE MENU
+===================================================== */
 
-const chatButton = document.getElementById("chatButton");
-const chatWindow = document.getElementById("chatWindow");
-const closeChat = document.getElementById("closeChat");
-const sendChat = document.getElementById("sendChat");
-const chatInput = document.getElementById("chatInput");
-const chatMessages = document.getElementById("chatMessages");
+const mobileMenuBtn =
+    document.getElementById("mobileMenuBtn");
 
-
-chatButton.addEventListener("click", function () {
-    chatWindow.classList.add("active");
-    chatInput.focus();
-});
+const mainNav =
+    document.getElementById("mainNav");
 
 
-closeChat.addEventListener("click", function () {
-    chatWindow.classList.remove("active");
-});
+if (mobileMenuBtn) {
+
+    mobileMenuBtn.addEventListener(
+        "click",
+        function () {
+
+            mainNav.classList.toggle("active");
+
+        }
+    );
+
+}
 
 
-function addChatMessage(message, type) {
+/* Close mobile menu after clicking link */
 
-    const div = document.createElement("div");
+document.querySelectorAll("#mainNav a")
+    .forEach(function(link) {
 
-    div.className =
-        type === "user"
-        ? "user-message"
-        : "bot-message";
+        link.addEventListener(
+            "click",
+            function() {
 
-    div.innerHTML = message;
+                mainNav.classList.remove("active");
 
-    chatMessages.appendChild(div);
+            }
+        );
+
+    });
+
+
+
+/* =====================================================
+   PREMIUM CALCULATOR
+===================================================== */
+
+const premiumForm =
+    document.getElementById("premiumForm");
+
+const premiumAmount =
+    document.getElementById("premiumAmount");
+
+const paymentAmount =
+    document.getElementById("paymentAmount");
+
+
+if (premiumForm) {
+
+    premiumForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const insuranceType =
+                document.getElementById(
+                    "insuranceType"
+                ).value;
+
+
+            const age =
+                Number(
+                    document.getElementById(
+                        "age"
+                    ).value
+                );
+
+
+            const coverage =
+                Number(
+                    document.getElementById(
+                        "coverage"
+                    ).value
+                );
+
+
+            const medical =
+                document.getElementById(
+                    "medical"
+                ).value;
+
+
+            if (!age || age < 18) {
+
+                alert(
+                    "Please enter a valid age of 18 or above."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * IMPORTANT:
+             *
+             * These are DEMONSTRATION values only.
+             *
+             * Replace this calculation with your
+             * authorised insurer/product rate table
+             * before using it for real quotations.
+             */
+
+
+            let baseRate = 0;
+
+
+            switch (insuranceType) {
+
+                case "life":
+                    baseRate = 0.004;
+                    break;
+
+                case "health":
+                    baseRate = 0.012;
+                    break;
+
+                case "motor":
+                    baseRate = 0.025;
+                    break;
+
+                case "travel":
+                    baseRate = 0.002;
+                    break;
+
+                case "home":
+                    baseRate = 0.003;
+                    break;
+
+                case "accident":
+                    baseRate = 0.0015;
+                    break;
+
+                default:
+                    baseRate = 0.005;
+
+            }
+
+
+            /*
+             * Age factor
+             */
+
+            let ageFactor = 1;
+
+
+            if (age >= 18 && age <= 30) {
+
+                ageFactor = 1;
+
+            }
+
+            else if (age <= 40) {
+
+                ageFactor = 1.20;
+
+            }
+
+            else if (age <= 50) {
+
+                ageFactor = 1.50;
+
+            }
+
+            else if (age <= 60) {
+
+                ageFactor = 1.90;
+
+            }
+
+            else {
+
+                ageFactor = 2.40;
+
+            }
+
+
+            /*
+             * Medical factor
+             */
+
+            let medicalFactor = 1;
+
+
+            if (medical === "diabetes") {
+
+                medicalFactor = 1.20;
+
+            }
+
+            else if (medical === "hypertension") {
+
+                medicalFactor = 1.15;
+
+            }
+
+            else if (medical === "heart") {
+
+                medicalFactor = 1.50;
+
+            }
+
+            else if (medical === "respiratory") {
+
+                medicalFactor = 1.25;
+
+            }
+
+            else if (medical === "other") {
+
+                medicalFactor = 1.30;
+
+            }
+
+
+            /*
+             * Calculate
+             */
+
+            let premium =
+                coverage *
+                baseRate *
+                ageFactor *
+                medicalFactor;
+
+
+            /*
+             * Minimum illustrative premium
+             */
+
+            if (premium < 1000) {
+
+                premium = 1000;
+
+            }
+
+
+            premium =
+                Math.round(
+                    premium / 100
+                ) * 100;
+
+
+            const formattedPremium =
+                premium.toLocaleString(
+                    "en-IN"
+                );
+
+
+            premiumAmount.textContent =
+                "₹" + formattedPremium;
+
+
+            paymentAmount.textContent =
+                "₹" + formattedPremium;
+
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   PAYMENT BUTTON
+===================================================== */
+
+const paymentBtn =
+    document.getElementById("paymentBtn");
+
+
+if (paymentBtn) {
+
+    paymentBtn.addEventListener(
+        "click",
+        function() {
+
+            const amount =
+                paymentAmount.textContent;
+
+
+            if (amount === "₹0") {
+
+                alert(
+                    "Please calculate your premium first."
+                );
+
+                document.getElementById(
+                    "calculator"
+                ).scrollIntoView({
+                    behavior: "smooth"
+                });
+
+                return;
+
+            }
+
+
+            alert(
+                "Payment gateway is not connected yet.\n\n" +
+                "Estimated amount: " +
+                amount +
+                "\n\n" +
+                "Connect an authorised payment gateway " +
+                "before accepting real customer payments."
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   CHAT ASSISTANCE
+===================================================== */
+
+const chatInput =
+    document.getElementById("chatInput");
+
+const chatSend =
+    document.getElementById("chatSend");
+
+const chatMessages =
+    document.getElementById("chatMessages");
+
+
+
+function addChatMessage(
+    message,
+    sender
+) {
+
+    const messageElement =
+        document.createElement("div");
+
+
+    messageElement.className =
+        sender === "user"
+            ? "user-message"
+            : "bot-message";
+
+
+    messageElement.innerHTML =
+        message;
+
+
+    chatMessages.appendChild(
+        messageElement
+    );
+
 
     chatMessages.scrollTop =
         chatMessages.scrollHeight;
+
 }
 
 
-function chatbotResponse(question) {
 
-    const text = question.toLowerCase();
+/* =====================================================
+   CHAT RESPONSE
+===================================================== */
 
-    if (
-        text.includes("life") ||
-        text.includes("term insurance")
-    ) {
+function getBotResponse(message) {
 
-        return `
-        <strong>Life Insurance</strong><br><br>
-
-        Life insurance is designed to provide financial
-        protection according to the applicable policy terms.
-
-        <br><br>
-
-        You can use our premium calculator to see an
-        illustrative estimate.
-
-        <br><br>
-
-        <a href="#calculator"
-           onclick="closeChatWindow()">
-           Open Premium Calculator →
-        </a>
-
-        <br><br>
-
-        <small>
-        Final premium and eligibility are subject to
-        insurer underwriting and policy terms.
-        </small>
-        `;
-    }
+    const text =
+        message.toLowerCase();
 
 
     if (
-        text.includes("health") ||
-        text.includes("medical")
+        text.includes("insurance type") ||
+        text.includes("insurance")
     ) {
 
         return `
-        <strong>Health Insurance</strong><br><br>
-
-        Health insurance can provide coverage for eligible
-        medical expenses according to the selected policy.
-
-        <br><br>
-
-        Tell us your requirements and our advisor can
-        help identify appropriate options.
+            We currently provide information for
+            Life, Health, Motor, Travel, Home,
+            Business, Personal Accident, Cyber,
+            Pet and Crop insurance.
+            <br><br>
+            You can explore the insurance section
+            above for more information.
         `;
+
     }
 
 
     if (
         text.includes("premium") ||
-        text.includes("price") ||
-        text.includes("cost")
+        text.includes("calculator") ||
+        text.includes("price")
     ) {
 
         return `
-        <strong>Premium Calculator</strong><br><br>
-
-        You can estimate a premium using:
-
-        <ul>
-          <li>Age</li>
-          <li>Insurance type</li>
-          <li>Coverage amount</li>
-          <li>Policy term</li>
-          <li>Risk/medical information</li>
-        </ul>
-
-        <a href="#calculator"
-           onclick="closeChatWindow()">
-           Calculate Premium →
-        </a>
-
-        <br><br>
-
-        <small>
-        Calculator results are illustrative and are not
-        insurance quotations.
-        </small>
+            You can use our Premium Calculator
+            to get an illustrative estimate.
+            <br><br>
+            Please remember that actual premiums
+            depend on the applicable insurer,
+            product, underwriting and policy terms.
         `;
+
+    }
+
+
+    if (
+        text.includes("policy") ||
+        text.includes("pdf") ||
+        text.includes("document")
+    ) {
+
+        return `
+            Our Policy Documents section is near
+            the top of this page.
+            <br><br>
+            Select "View PDF" or "Download" for
+            the applicable document.
+        `;
+
     }
 
 
     if (
         text.includes("payment") ||
-        text.includes("pay") ||
-        text.includes("premium payment")
+        text.includes("pay")
     ) {
 
         return `
-        <strong>Online Payment</strong><br><br>
-
-        You can use our online payment section to
-        proceed to the authorised payment gateway.
-
-        <br><br>
-
-        <a href="#payment"
-           onclick="closeChatWindow()">
-           Make a Payment →
-        </a>
-
-        <br><br>
-
-        Please verify your policy number and amount
-        before making a payment.
+            The payment option is located beside
+            the Premium Calculator.
+            <br><br>
+            A real payment gateway must be connected
+            before accepting customer payments.
         `;
+
     }
 
 
     if (
-        text.includes("advisor") ||
-        text.includes("agent") ||
-        text.includes("contact")
+        text.includes("contact") ||
+        text.includes("phone") ||
+        text.includes("email")
     ) {
 
         return `
-        <strong>Talk to an Advisor</strong><br><br>
-
-        Life Protection Company Ltd.<br>
-        Suncity, Bandlaguda,<br>
-        Opposite Pantaloons, 500091
-
-        <br><br>
-
-        📞 <a href="tel:9059056219">
-        9059056219
-        </a>
-
-        <br>
-
-        ✉ <a href="mailto:mrajeshkhanna9@gmail.com">
-        mrajeshkhanna9@gmail.com
-        </a>
+            You can contact Life Protection Company Ltd.
+            at <b>9059056219</b> or
+            <b>mrajeshkhanna9@gmail.com</b>.
         `;
-    }
 
-
-    if (
-        text.includes("hello") ||
-        text.includes("hi") ||
-        text.includes("help")
-    ) {
-
-        return `
-        Hello! 👋
-
-        <br><br>
-
-        I can help you with:
-
-        <ul>
-          <li>Life Insurance</li>
-          <li>Health Insurance</li>
-          <li>Premium estimates</li>
-          <li>Online payment</li>
-          <li>Advisor contact</li>
-        </ul>
-
-        What would you like to know?
-        `;
     }
 
 
     return `
-    Thank you for contacting
-    <strong>Life Protection Company Ltd.</strong>
-
-    <br><br>
-
-    I couldn't find an exact answer to your question.
-
-    <br><br>
-
-    Please call
-    <a href="tel:9059056219">9059056219</a>
-
-    or email
-    <a href="mailto:mrajeshkhanna9@gmail.com">
-    mrajeshkhanna9@gmail.com
-    </a>
-    to speak with an advisor.
+        Thank you for your question.
+        <br><br>
+        I can help with:
+        <br>
+        • Insurance types
+        <br>
+        • Premium calculator
+        <br>
+        • Policy documents
+        <br>
+        • Payment information
+        <br>
+        • Contact details
     `;
+
 }
 
 
-function sendUserMessage() {
 
-    const question =
+/* =====================================================
+   SEND CHAT
+===================================================== */
+
+function sendChatMessage() {
+
+    const message =
         chatInput.value.trim();
 
-    if (!question) return;
 
-    addChatMessage(question, "user");
+    if (!message) {
 
-    chatInput.value = "";
-
-    setTimeout(function () {
-
-        const response =
-            chatbotResponse(question);
-
-        addChatMessage(response, "bot");
-
-    }, 500);
-}
-
-
-sendChat.addEventListener(
-    "click",
-    sendUserMessage
-);
-
-
-chatInput.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (event.key === "Enter") {
-            sendUserMessage();
-        }
+        return;
 
     }
-);
 
-
-function quickChat(type) {
-
-    const questions = {
-
-        life:
-        "Tell me about life insurance",
-
-        health:
-        "Tell me about health insurance",
-
-        premium:
-        "How can I calculate my premium?",
-
-        payment:
-        "How can I make a payment?",
-
-        advisor:
-        "I want to talk to an advisor"
-
-    };
 
     addChatMessage(
-        questions[type],
+        message,
         "user"
     );
 
-    setTimeout(function() {
 
-        addChatMessage(
-            chatbotResponse(questions[type]),
-            "bot"
+    chatInput.value = "";
+
+
+    setTimeout(
+        function() {
+
+            const response =
+                getBotResponse(
+                    message
+                );
+
+
+            addChatMessage(
+                response,
+                "bot"
+            );
+
+        },
+        500
+    );
+
+}
+
+
+
+if (chatSend) {
+
+    chatSend.addEventListener(
+        "click",
+        sendChatMessage
+    );
+
+}
+
+
+if (chatInput) {
+
+    chatInput.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                sendChatMessage();
+
+            }
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   QUICK CHAT BUTTONS
+===================================================== */
+
+function sendQuickMessage(message) {
+
+    if (!chatInput) {
+
+        return;
+
+    }
+
+
+    chatInput.value =
+        message;
+
+
+    sendChatMessage();
+
+}
+
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const revealElements =
+    document.querySelectorAll(
+        ".policy-card, .insurance-box, .why-card"
+    );
+
+
+const observer =
+    new IntersectionObserver(
+        function(entries) {
+
+            entries.forEach(
+                function(entry) {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: 0.1
+        }
+    );
+
+
+revealElements.forEach(
+    function(element) {
+
+        observer.observe(
+            element
         );
 
-    }, 400);
-}
-
-
-function closeChatWindow() {
-
-    chatWindow.classList.remove("active");
-
-}
-
-document.getElementById("year").textContent = new Date().getFullYear();
-populateSelects();
-renderCards();
+    }
+);
