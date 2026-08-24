@@ -1,705 +1,1600 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Life Protection Company Ltd. - Insurance protection and illustrative premium estimation.">
-  <title>Life Protection Company Ltd. | Insurance Protection</title>
-  <link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Life Protection Company Ltd - Life, Health, Motor, Travel, Home and Business Insurance">
+
+    <title>
+        Life Protection Company Ltd.
+    </title>
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-  <div class="watermark">LPC</div>
 
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#home">
-        <div class="logo" aria-label="Life Protection Company logo">
-          <span>❤</span>
-        </div>
-        <div>
-          <strong>Life Protection</strong>
-          <small>Company Ltd.</small>
-        </div>
-      </a>
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
-      <nav id="mainNav">
-        <a href="#home">Home</a>
-        <a href="#insurance">Insurance</a>
-        <a href="#calculator">Premium Calculator</a>
-               
-</section>
-        <a href="#why-us">Why Us</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="btn btn-small" href="#quote">Get a Quote</a>
-    </div>
-  </header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">PROTECT • PLAN • SECURE</span>
-          <h1>Protection for every stage of life.</h1>
-          <p>Explore life, health, motor, travel, home, business and other insurance solutions from Life Protection Company Ltd.</p>
-          <div class="hero-actions">
-            <a class="btn" href="#calculator">Calculate Premium</a>
-            <a class="btn btn-outline" href="#insurance">Explore Insurance</a>
-          </div>
-          <p class="microcopy">Premium figures on this demo are illustrative estimates only and are not insurance quotations.</p>
-        </div>
-        <div class="hero-card">
-          <div class="shield">✓</div>
-          <h2>Your protection, our priority.</h2>
-          <p>Get an indicative estimate based on your selected age, coverage and risk factors.</p>
-          <div class="stats">
-            <div><b>10+</b><span>Insurance categories</span></div>
-            <div><b>24/7</b><span>Online enquiry</span></div>
-            <div><b>1</b><span>Protection partner</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- =====================================================
+     TOP BAR
+===================================================== -->
 
-    <section class="section" id="insurance">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">OUR PRODUCTS</span>
-          <h2>Insurance for what matters most</h2>
-          <p>Choose a category to start exploring your protection needs.</p>
-        </div>
-        <div class="cards" id="insuranceCards"></div>
-      </div>
-    </section>
+<div class="top-bar">
 
-   <section class="section alt" id="calculator">
+    <div class="container top-bar-content">
 
-  <div class="container">
+        <span>
+            📞 9059056219
+        </span>
 
-    <div class="section-heading">
-      <span class="eyebrow">PREMIUM & PAYMENT</span>
-      <h2>Calculate, Pay & Get Assistance</h2>
-      <p>
-        Estimate your premium, make an online payment,
-        or ask our insurance assistant for help.
-      </p>
-    </div>
+        <span>
+            ✉️ mrajeshkhanna9@gmail.com
+        </span>
 
-
-    <!-- CALCULATOR + PAYMENT -->
-
-    <div class="service-grid">
-
-
-      <!-- PREMIUM CALCULATOR -->
-
-      <div class="service-card">
-
-        <div class="service-icon">🧮</div>
-
-        <h2>Premium Calculator</h2>
-
-        <p class="service-description">
-          Get an illustrative premium estimate based on
-          your selected insurance details.
-        </p>
-
-        <form class="calculator" id="premiumForm">
-
-          <label>
-            Insurance Type
-            <select id="insuranceType" required></select>
-          </label>
-
-          <label>
-            Age
-            <input
-              id="age"
-              type="number"
-              min="18"
-              max="80"
-              value="35"
-              required
-            >
-          </label>
-
-          <label>
-            Gender
-
-            <select id="gender">
-
-              <option value="male">
-                Male
-              </option>
-
-              <option value="female">
-                Female
-              </option>
-
-              <option value="other">
-                Other / Prefer not to say
-              </option>
-
-            </select>
-
-          </label>
-
-
-          <label>
-            Coverage Amount
-
-            <select id="coverage">
-
-              <option value="500000">
-                ₹5,00,000
-              </option>
-
-              <option value="1000000" selected>
-                ₹10,00,000
-              </option>
-
-              <option value="2500000">
-                ₹25,00,000
-              </option>
-
-              <option value="5000000">
-                ₹50,00,000
-              </option>
-
-              <option value="10000000">
-                ₹1,00,00,000
-              </option>
-
-            </select>
-
-          </label>
-
-
-          <label>
-            Policy Term
-
-            <select id="term">
-
-              <option value="10">
-                10 years
-              </option>
-
-              <option value="15">
-                15 years
-              </option>
-
-              <option value="20" selected>
-                20 years
-              </option>
-
-              <option value="25">
-                25 years
-              </option>
-
-              <option value="30">
-                30 years
-              </option>
-
-            </select>
-
-          </label>
-
-
-          <label>
-            Medical / Risk Condition
-
-            <select id="condition">
-
-              <option value="standard">
-                No declared condition
-              </option>
-
-              <option value="controlled">
-                Controlled / minor condition
-              </option>
-
-              <option value="major">
-                Major / multiple conditions
-              </option>
-
-            </select>
-
-          </label>
-
-
-          <label class="check">
-
-            <input
-              id="smoker"
-              type="checkbox"
-            >
-
-            Tobacco / smoker
-
-          </label>
-
-
-          <button
-            class="btn"
-            type="submit"
-          >
-            Calculate Premium
-          </button>
-
-
-          <div
-            id="premiumResult"
-            class="result"
-            aria-live="polite"
-          ></div>
-
-        </form>
-
-        <div class="notice">
-
-          <strong>Important:</strong>
-
-          This calculator provides an illustrative
-          estimate only. Final premium, eligibility,
-          coverage and acceptance are subject to the
-          applicable insurer's underwriting and policy
-          terms.
-
-        </div>
-
-      </div>
-
-
-
-      <!-- ONLINE PAYMENT -->
-
-      <div class="service-card payment-card">
-
-        <div class="service-icon">💳</div>
-
-        <h2>Online Premium Payment</h2>
-
-        <p class="service-description">
-
-          Pay your insurance premium online through
-          our authorised payment gateway.
-
-        </p>
-
-
-        <form id="paymentForm">
-
-
-          <label>
-
-            Customer Name
-
-            <input
-              id="paymentName"
-              type="text"
-              placeholder="Enter your full name"
-              required
-            >
-
-          </label>
-
-
-          <label>
-
-            Policy Number
-
-            <input
-              id="policyNumber"
-              type="text"
-              placeholder="Enter policy number"
-              required
-            >
-
-          </label>
-
-
-          <label>
-
-            Mobile Number
-
-            <input
-              id="paymentPhone"
-              type="tel"
-              placeholder="Enter mobile number"
-              required
-            >
-
-          </label>
-
-
-          <label>
-
-            Premium Amount
-
-            <div class="amount-input">
-
-              <span>₹</span>
-
-              <input
-                id="paymentAmount"
-                type="number"
-                min="1"
-                step="1"
-                placeholder="Enter amount"
-                required
-              >
-
-            </div>
-
-          </label>
-
-
-          <button
-            class="btn payment-btn"
-            type="submit"
-          >
-
-            🔒 Proceed to Secure Payment
-
-          </button>
-
-
-        </form>
-
-
-        <div class="payment-security">
-
-          <span>🔒</span>
-
-          <div>
-
-            <strong>Secure Payment</strong>
-
-            <p>
-              You will be redirected to the
-              authorised payment gateway.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <p class="payment-note">
-
-          Please verify your policy number and
-          payment amount before proceeding.
-
-        </p>
-
-      </div>
+        <span class="top-right">
+            Insurance Protection You Can Trust
+        </span>
 
     </div>
 
-
-
-    <!-- CHAT ASSISTANCE IN MIDDLE OF PAGE -->
-
-    <div class="chat-assistance-section">
-
-      <div class="chat-assistance-header">
-
-        <div class="chat-assistant-icon">
-          💬
-        </div>
-
-        <div>
-
-          <span class="eyebrow">
-            CHAT ASSISTANCE
-          </span>
-
-          <h2>
-            How can we help you?
-          </h2>
-
-          <p>
-            Ask our Life Protection Assistant
-            about insurance, premiums, payments
-            or contacting an advisor.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="chat-box">
-
-        <div
-          id="chatMessages"
-          class="chat-messages"
-        >
-
-          <div class="bot-message">
-
-            <strong>
-              Life Protection Assistant
-            </strong>
-
-            <br><br>
-
-            Hello! 👋
-
-            <br>
-
-            Welcome to Life Protection Company Ltd.
-
-            <br><br>
-
-            How can I help you today?
-
-          </div>
-
-
-          <div class="quick-buttons">
-
-            <button
-              onclick="quickChat('life')"
-            >
-              ❤️ Life Insurance
-            </button>
-
-            <button
-              onclick="quickChat('health')"
-            >
-              🏥 Health Insurance
-            </button>
-
-            <button
-              onclick="quickChat('premium')"
-            >
-              🧮 Premium
-            </button>
-
-            <button
-              onclick="quickChat('payment')"
-            >
-              💳 Payment
-            </button>
-
-            <button
-              onclick="quickChat('advisor')"
-            >
-              👨‍💼 Talk to Advisor
-            </button>
-
-          </div>
-
-        </div>
-
-
-        <div class="chat-input-area">
-
-          <input
-            id="chatInput"
-            type="text"
-            placeholder="Type your question..."
-            autocomplete="off"
-          >
-
-          <button
-            id="sendChat"
-            type="button"
-          >
-            ➤
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-    <section class="section" id="why-us">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">WHY LIFE PROTECTION</span>
-          <h2>A simple way to start your insurance journey</h2>
-        </div>
-        <div class="features">
-          <article><span>01</span><h3>Understand</h3><p>Learn what each type of cover is designed to protect.</p></article>
-          <article><span>02</span><h3>Estimate</h3><p>Use the illustrative calculator to understand possible pricing factors.</p></article>
-          <article><span>03</span><h3>Compare</h3><p>Discuss available plans, coverage, exclusions and benefits with an advisor.</p></article>
-          <article><span>04</span><h3>Protect</h3><p>Submit a formal proposal through the appropriate insurer and process.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt" id="quote">
-      <div class="container form-grid">
-        <div>
-          <span class="eyebrow">GET IN TOUCH</span>
-          <h2>Request an insurance consultation</h2>
-          <p>Tell us what you are looking for. This demo form validates the information locally; connect it to a secure form/backend before collecting real customer or medical data.</p>
-          <div class="contact-box">
-            <p><strong>Life Protection Company Ltd.</strong></p>
-            <p>Suncity, Bandlaguda, Opposite Pantaloons, 500091</p>
-            <p>Phone: <a href="tel:9059056219">9059056219</a></p>
-            <p>Email: <a href="mailto:mrajeshkhanna9@gmail.com">mrajeshkhanna9@gmail.com</a></p>
-          </div>
-        </div>
-
-        <form id="quoteForm" class="quote-form">
-          <label>Full name<input id="fullName" required></label>
-          <label>Phone<input id="phone" type="tel" pattern="[0-9+ ()-]{10,}" required></label>
-          <label>Email<input id="email" type="email" required></label>
-          <label>Insurance interest
-            <select id="quoteType" required></select>
-          </label>
-          <label>Message<textarea id="message" rows="5" placeholder="Tell us about your insurance requirement"></textarea></label>
-          <button class="btn" type="submit">Submit Enquiry</button>
-          <p id="quoteMessage" class="success" aria-live="polite"></p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer id="contact">
-    <div class="container footer-grid">
-      <div>
-        <div class="brand footer-brand">
-          <div class="logo"><span>❤</span></div>
-          <div><strong>Life Protection</strong><small>Company Ltd.</small></div>
-        </div>
-        <p>Insurance protection made easier to understand.</p>
-      </div>
-      <div>
-        <h3>Contact</h3>
-        <p>Suncity, Bandlaguda<br>Opposite Pantaloons, 500091</p>
-        <p><a href="tel:9059056219">9059056219</a><br><a href="mailto:mrajeshkhanna9@gmail.com">mrajeshkhanna9@gmail.com</a></p>
-      </div>
-      <div>
-        <h3>Disclaimer</h3>
-        <p class="small">This website template is for demonstration. Product availability, rates, benefits, exclusions and eligibility must be verified with the relevant licensed insurer and current policy documents.</p>
-      </div>
-    </div>
-    <div class="copyright">© <span id="year"></span> Life Protection Company Ltd. All rights reserved.</div>
-  </footer>
-<!-- ================= CHAT ASSISTANT ================= -->
-
-<button id="chatButton" class="chat-button" aria-label="Open chat">
-  💬
-</button>
-
-<div id="chatWindow" class="chat-window">
-  <div class="chat-header">
-    <div>
-      <strong>Life Protection Assistant</strong>
-      <small>Online Assistance</small>
-    </div>
-    <button id="closeChat" class="chat-close">×</button>
-  </div>
-
-  <div id="chatMessages" class="chat-messages">
-    <div class="bot-message">
-      Hello! 👋 Welcome to Life Protection Company Ltd.<br><br>
-      How can I help you?
-    </div>
-
-    <div class="quick-buttons">
-      <button onclick="quickChat('life')">Life Insurance</button>
-      <button onclick="quickChat('health')">Health Insurance</button>
-      <button onclick="quickChat('premium')">Premium Calculator</button>
-      <button onclick="quickChat('payment')">Make Payment</button>
-      <button onclick="quickChat('advisor')">Talk to Advisor</button>
-    </div>
-  </div>
-
-  <div class="chat-input-area">
-    <input
-      id="chatInput"
-      type="text"
-      placeholder="Type your question..."
-      autocomplete="off"
-    >
-    <button id="sendChat">➤</button>
-  </div>
 </div>
 
 
-<!-- ================= ONLINE PAYMENT ================= -->
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
-<section class="payment-section" id="payment">
-  <div class="container">
-    <div class="payment-card">
+<header class="main-header">
 
-      <span class="eyebrow">ONLINE PAYMENT</span>
+    <div class="container nav-container">
 
-      <h2>Pay Your Insurance Premium</h2>
+        <a href="#home" class="logo">
 
-      <p>
-        Make your payment securely through our online payment facility.
-      </p>
+            <div class="logo-icon">
+                🛡️
+            </div>
 
-      <form id="paymentForm">
+            <div>
 
-        <label>
-          Customer Name
-          <input
-            id="paymentName"
-            type="text"
-            required
-            placeholder="Enter your name"
-          >
-        </label>
+                <strong>
+                    Life Protection
+                </strong>
 
-        <label>
-          Policy Number
-          <input
-            id="policyNumber"
-            type="text"
-            required
-            placeholder="Enter policy number"
-          >
-        </label>
+                <small>
+                    Company Ltd.
+                </small>
 
-        <label>
-          Mobile Number
-          <input
-            id="paymentPhone"
-            type="tel"
-            required
-            placeholder="Enter mobile number"
-          >
-        </label>
+            </div>
 
-        <label>
-          Premium Amount (₹)
-          <input
-            id="paymentAmount"
-            type="number"
-            min="1"
-            step="1"
-            required
-            placeholder="Enter amount"
-          >
-        </label>
+        </a>
 
-        <button class="btn" type="submit">
-          Proceed to Secure Payment
+
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            aria-label="Open menu"
+        >
+            ☰
         </button>
 
-      </form>
 
-      <p class="payment-note">
-        You will be redirected to the authorised payment gateway.
-        Payment confirmation is subject to successful gateway verification.
-      </p>
+        <nav id="mainNav">
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#policy-documents">
+                Policies
+            </a>
+
+            <a href="#insurance">
+                Insurance
+            </a>
+
+            <a href="#calculator">
+                Premium Calculator
+            </a>
+
+            <a href="#chat">
+                Assistance
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+            <a href="#calculator"
+               class="nav-quote">
+                Get Quote
+            </a>
+
+        </nav>
 
     </div>
-  </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+
+        <div class="hero-text">
+
+            <div class="hero-badge">
+                🛡️ COMPLETE INSURANCE PROTECTION
+            </div>
+
+            <h1>
+                Protect What
+                <span>Matters Most.</span>
+            </h1>
+
+            <p>
+                Reliable insurance solutions for you,
+                your family, your vehicle, your home
+                and your business.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#calculator"
+                   class="btn btn-primary">
+                    Calculate Premium
+                </a>
+
+                <a href="#insurance"
+                   class="btn btn-light">
+                    Explore Insurance
+                </a>
+
+            </div>
+
+            <div class="hero-trust">
+
+                <div>
+                    ✓ Customer Support
+                </div>
+
+                <div>
+                    ✓ Multiple Insurance Options
+                </div>
+
+                <div>
+                    ✓ Easy Policy Access
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="hero-card-icon">
+                🛡️
+            </div>
+
+            <h3>
+                Your Protection,
+                Our Priority
+            </h3>
+
+            <p>
+                Explore insurance options designed
+                around your protection needs.
+            </p>
+
+            <a href="#calculator"
+               class="hero-card-btn">
+                Get Started →
+            </a>
+
+        </div>
+
+    </div>
+
 </section>
-  <script src="script.js"></script>
+
+
+
+<!-- =====================================================
+     QUICK STATS
+===================================================== -->
+
+<section class="stats">
+
+    <div class="container stats-grid">
+
+        <div class="stat">
+
+            <strong>
+                10+
+            </strong>
+
+            <span>
+                Insurance Categories
+            </span>
+
+        </div>
+
+        <div class="stat">
+
+            <strong>
+                24/7
+            </strong>
+
+            <span>
+                Online Assistance
+            </span>
+
+        </div>
+
+        <div class="stat">
+
+            <strong>
+                Easy
+            </strong>
+
+            <span>
+                Policy Access
+            </span>
+
+        </div>
+
+        <div class="stat">
+
+            <strong>
+                Secure
+            </strong>
+
+            <span>
+                Customer Process
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     POLICY DOCUMENTS
+===================================================== -->
+
+<section
+    class="section policy-section"
+    id="policy-documents"
+>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span>
+                POLICY INFORMATION
+            </span>
+
+            <h2>
+                Insurance Policy Documents
+            </h2>
+
+            <p>
+                Read or download information about
+                our insurance products, coverage,
+                benefits and applicable terms.
+            </p>
+
+        </div>
+
+
+        <div class="policy-notice">
+
+            <strong>
+                Important Notice
+            </strong>
+
+            <p>
+                Please read the applicable policy
+                document, exclusions, waiting periods,
+                benefits and terms before purchasing.
+            </p>
+
+        </div>
+
+
+        <div class="policy-grid">
+
+
+            <!-- LIFE -->
+
+            <article class="policy-card">
+
+                <div class="policy-icon">
+                    ❤️
+                </div>
+
+                <h3>
+                    Life Insurance
+                </h3>
+
+                <p>
+                    Financial protection for your
+                    family and beneficiaries.
+                </p>
+
+                <div class="policy-meta">
+
+                    <span>
+                        Age: 18–65*
+                    </span>
+
+                    <span>
+                        Coverage: Product based
+                    </span>
+
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="documents/life-insurance-policy.pdf"
+                        target="_blank"
+                        class="small-btn"
+                    >
+                        View PDF
+                    </a>
+
+                    <a
+                        href="documents/life-insurance-policy.pdf"
+                        download
+                        class="small-btn outline"
+                    >
+                        Download
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- HEALTH -->
+
+            <article class="policy-card">
+
+                <div class="policy-icon">
+                    🏥
+                </div>
+
+                <h3>
+                    Health Insurance
+                </h3>
+
+                <p>
+                    Protection against eligible
+                    medical and hospital expenses.
+                </p>
+
+                <div class="policy-meta">
+
+                    <span>
+                        Age: Product based
+                    </span>
+
+                    <span>
+                        Coverage: Product based
+                    </span>
+
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="documents/health-insurance-policy.pdf"
+                        target="_blank"
+                        class="small-btn"
+                    >
+                        View PDF
+                    </a>
+
+                    <a
+                        href="documents/health-insurance-policy.pdf"
+                        download
+                        class="small-btn outline"
+                    >
+                        Download
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- MOTOR -->
+
+            <article class="policy-card">
+
+                <div class="policy-icon">
+                    🚗
+                </div>
+
+                <h3>
+                    Motor Insurance
+                </h3>
+
+                <p>
+                    Protection for eligible vehicle
+                    and third-party risks.
+                </p>
+
+                <div class="policy-meta">
+
+                    <span>
+                        Vehicle dependent
+                    </span>
+
+                    <span>
+                        Coverage: Vehicle based
+                    </span>
+
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="documents/motor-insurance-policy.pdf"
+                        target="_blank"
+                        class="small-btn"
+                    >
+                        View PDF
+                    </a>
+
+                    <a
+                        href="documents/motor-insurance-policy.pdf"
+                        download
+                        class="small-btn outline"
+                    >
+                        Download
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- TRAVEL -->
+
+            <article class="policy-card">
+
+                <div class="policy-icon">
+                    ✈️
+                </div>
+
+                <h3>
+                    Travel Insurance
+                </h3>
+
+                <p>
+                    Protection for specified risks
+                    during eligible travel.
+                </p>
+
+                <div class="policy-meta">
+
+                    <span>
+                        Age: Product based
+                    </span>
+
+                    <span>
+                        Coverage: Trip based
+                    </span>
+
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="documents/travel-insurance-policy.pdf"
+                        target="_blank"
+                        class="small-btn"
+                    >
+                        View PDF
+                    </a>
+
+                    <a
+                        href="documents/travel-insurance-policy.pdf"
+                        download
+                        class="small-btn outline"
+                    >
+                        Download
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- HOME -->
+
+            <article class="policy-card">
+
+                <div class="policy-icon">
+                    🏠
+                </div>
+
+                <h3>
+                    Home Insurance
+                </h3>
+
+                <p>
+                    Protection for eligible home,
+                    property and contents.
+                </p>
+
+                <div class="policy-meta">
+
+                    <span>
+                        Property dependent
+                    </span>
+
+                    <span>
+                        Coverage: Value based
+                    </span>
+
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="documents/home-insurance-policy.pdf"
+                        target="_blank"
+                        class="small-btn"
+                    >
+                        View PDF
+                    </a>
+
+                    <a
+                        href="documents/home-insurance-policy.pdf"
+                        download
+                        class="small-btn outline"
+                    >
+                        Download
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- BUSINESS -->
+
+            <article class="policy-card">
+
+                <div class="policy-icon">
+                    🏢
+                </div>
+
+                <h3>
+                    Business Insurance
+                </h3>
+
+                <p>
+                    Protection for eligible business
+                    assets and risks.
+                </p>
+
+                <div class="policy-meta">
+
+                    <span>
+                        Business dependent
+                    </span>
+
+                    <span>
+                        Coverage: Risk based
+                    </span>
+
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="documents/business-insurance-policy.pdf"
+                        target="_blank"
+                        class="small-btn"
+                    >
+                        View PDF
+                    </a>
+
+                    <a
+                        href="documents/business-insurance-policy.pdf"
+                        download
+                        class="small-btn outline"
+                    >
+                        Download
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- ACCIDENT -->
+
+            <article class="policy-card">
+
+                <div class="policy-icon">
+                    🛡️
+                </div>
+
+                <h3>
+                    Personal Accident
+                </h3>
+
+                <p>
+                    Benefits for specified accidental
+                    events and disabilities.
+                </p>
+
+                <div class="policy-meta">
+
+                    <span>
+                        Age: Product based
+                    </span>
+
+                    <span>
+                        Coverage: Product based
+                    </span>
+
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="documents/personal-accident-policy.pdf"
+                        target="_blank"
+                        class="small-btn"
+                    >
+                        View PDF
+                    </a>
+
+                    <a
+                        href="documents/personal-accident-policy.pdf"
+                        download
+                        class="small-btn outline"
+                    >
+                        Download
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- CYBER -->
+
+            <article class="policy-card">
+
+                <div class="policy-icon">
+                    💻
+                </div>
+
+                <h3>
+                    Cyber Insurance
+                </h3>
+
+                <p>
+                    Protection for specified
+                    cyber-related risks.
+                </p>
+
+                <div class="policy-meta">
+
+                    <span>
+                        Product dependent
+                    </span>
+
+                    <span>
+                        Coverage: Product based
+                    </span>
+
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="documents/cyber-insurance-policy.pdf"
+                        target="_blank"
+                        class="small-btn"
+                    >
+                        View PDF
+                    </a>
+
+                    <a
+                        href="documents/cyber-insurance-policy.pdf"
+                        download
+                        class="small-btn outline"
+                    >
+                        Download
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- PET -->
+
+            <article class="policy-card">
+
+                <div class="policy-icon">
+                    🐕
+                </div>
+
+                <h3>
+                    Pet Insurance
+                </h3>
+
+                <p>
+                    Protection for specified eligible
+                    pet-related risks.
+                </p>
+
+                <div class="policy-meta">
+
+                    <span>
+                        Pet dependent
+                    </span>
+
+                    <span>
+                        Coverage: Product based
+                    </span>
+
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="documents/pet-insurance-policy.pdf"
+                        target="_blank"
+                        class="small-btn"
+                    >
+                        View PDF
+                    </a>
+
+                    <a
+                        href="documents/pet-insurance-policy.pdf"
+                        download
+                        class="small-btn outline"
+                    >
+                        Download
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- CROP -->
+
+            <article class="policy-card">
+
+                <div class="policy-icon">
+                    🌾
+                </div>
+
+                <h3>
+                    Crop Insurance
+                </h3>
+
+                <p>
+                    Protection for specified agricultural
+                    and crop-related risks.
+                </p>
+
+                <div class="policy-meta">
+
+                    <span>
+                        Scheme dependent
+                    </span>
+
+                    <span>
+                        Coverage: Crop based
+                    </span>
+
+                </div>
+
+                <div class="card-buttons">
+
+                    <a
+                        href="documents/crop-insurance-policy.pdf"
+                        target="_blank"
+                        class="small-btn"
+                    >
+                        View PDF
+                    </a>
+
+                    <a
+                        href="documents/crop-insurance-policy.pdf"
+                        download
+                        class="small-btn outline"
+                    >
+                        Download
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     INSURANCE PRODUCTS
+===================================================== -->
+
+<section
+    class="section insurance-section"
+    id="insurance"
+>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span>
+                OUR INSURANCE SOLUTIONS
+            </span>
+
+            <h2>
+                Protection for Every Stage of Life
+            </h2>
+
+            <p>
+                Choose the insurance category that
+                matches your protection needs.
+            </p>
+
+        </div>
+
+
+        <div class="insurance-grid">
+
+            <div class="insurance-box">
+                <span>❤️</span>
+                <h3>Life</h3>
+                <p>Family financial protection.</p>
+            </div>
+
+            <div class="insurance-box">
+                <span>🏥</span>
+                <h3>Health</h3>
+                <p>Medical expense protection.</p>
+            </div>
+
+            <div class="insurance-box">
+                <span>🚗</span>
+                <h3>Motor</h3>
+                <p>Vehicle protection.</p>
+            </div>
+
+            <div class="insurance-box">
+                <span>✈️</span>
+                <h3>Travel</h3>
+                <p>Travel risk protection.</p>
+            </div>
+
+            <div class="insurance-box">
+                <span>🏠</span>
+                <h3>Home</h3>
+                <p>Property protection.</p>
+            </div>
+
+            <div class="insurance-box">
+                <span>🏢</span>
+                <h3>Business</h3>
+                <p>Business risk protection.</p>
+            </div>
+
+            <div class="insurance-box">
+                <span>🛡️</span>
+                <h3>Accident</h3>
+                <p>Accidental protection.</p>
+            </div>
+
+            <div class="insurance-box">
+                <span>💻</span>
+                <h3>Cyber</h3>
+                <p>Cyber risk protection.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PREMIUM CALCULATOR + PAYMENT
+===================================================== -->
+
+<section
+    class="section calculator-section"
+    id="calculator"
+>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span>
+                PLAN YOUR PROTECTION
+            </span>
+
+            <h2>
+                Premium Calculator
+            </h2>
+
+            <p>
+                Get an illustrative premium estimate
+                based on the information entered below.
+            </p>
+
+        </div>
+
+
+        <div class="calculator-layout">
+
+
+            <!-- CALCULATOR -->
+
+            <div class="calculator-card">
+
+                <h3>
+                    🧮 Calculate Your Premium
+                </h3>
+
+                <p class="form-note">
+                    This calculator provides an estimate only.
+                </p>
+
+
+                <form id="premiumForm">
+
+
+                    <label>
+                        Insurance Type
+                    </label>
+
+                    <select id="insuranceType">
+
+                        <option value="life">
+                            Life Insurance
+                        </option>
+
+                        <option value="health">
+                            Health Insurance
+                        </option>
+
+                        <option value="motor">
+                            Motor Insurance
+                        </option>
+
+                        <option value="travel">
+                            Travel Insurance
+                        </option>
+
+                        <option value="home">
+                            Home Insurance
+                        </option>
+
+                        <option value="accident">
+                            Personal Accident
+                        </option>
+
+                    </select>
+
+
+                    <label>
+                        Age
+                    </label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        min="18"
+                        max="100"
+                        placeholder="Enter your age"
+                        required
+                    >
+
+
+                    <label>
+                        Coverage Amount
+                    </label>
+
+                    <select id="coverage">
+
+                        <option value="500000">
+                            ₹5 Lakh
+                        </option>
+
+                        <option value="1000000">
+                            ₹10 Lakh
+                        </option>
+
+                        <option value="2500000">
+                            ₹25 Lakh
+                        </option>
+
+                        <option value="5000000">
+                            ₹50 Lakh
+                        </option>
+
+                        <option value="10000000">
+                            ₹1 Crore
+                        </option>
+
+                    </select>
+
+
+                    <label>
+                        Medical / Risk Information
+                    </label>
+
+                    <select id="medical">
+
+                        <option value="none">
+                            No declared condition
+                        </option>
+
+                        <option value="diabetes">
+                            Diabetes
+                        </option>
+
+                        <option value="hypertension">
+                            Hypertension
+                        </option>
+
+                        <option value="heart">
+                            Heart condition
+                        </option>
+
+                        <option value="respiratory">
+                            Respiratory condition
+                        </option>
+
+                        <option value="other">
+                            Other / Requires review
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        type="submit"
+                        class="calculate-btn"
+                    >
+                        Calculate Estimate
+                    </button>
+
+                </form>
+
+
+                <div
+                    class="calculator-result"
+                    id="calculatorResult"
+                >
+
+                    <span>
+                        Estimated Annual Premium
+                    </span>
+
+                    <strong id="premiumAmount">
+                        ₹0
+                    </strong>
+
+                    <small>
+                        Illustrative estimate only.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- PAYMENT -->
+
+            <div class="payment-card">
+
+                <div class="payment-icon">
+                    💳
+                </div>
+
+                <h3>
+                    Online Payment
+                </h3>
+
+                <p>
+                    After receiving an approved quotation,
+                    customers can proceed to the authorised
+                    payment process.
+                </p>
+
+
+                <div class="payment-summary">
+
+                    <div>
+                        <span>
+                            Estimated Premium
+                        </span>
+
+                        <strong id="paymentAmount">
+                            ₹0
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="payment-btn"
+                    id="paymentBtn"
+                >
+                    Proceed to Payment
+                </button>
+
+
+                <p class="payment-note">
+                    Payment gateway integration is required
+                    before accepting real customer payments.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CHAT ASSISTANCE
+===================================================== -->
+
+<section
+    class="section chat-section"
+    id="chat"
+>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span>
+                CUSTOMER ASSISTANCE
+            </span>
+
+            <h2>
+                Need Help Choosing Insurance?
+            </h2>
+
+            <p>
+                Ask our website assistant about insurance
+                categories, documents and the premium calculator.
+            </p>
+
+        </div>
+
+
+        <div class="chat-wrapper">
+
+            <div class="chat-header">
+
+                <div class="chat-avatar">
+                    🤖
+                </div>
+
+                <div>
+
+                    <strong>
+                        Life Protection Assistant
+                    </strong>
+
+                    <span>
+                        ● Online assistance
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="chat-messages"
+                id="chatMessages"
+            >
+
+                <div class="bot-message">
+
+                    Hello! 👋
+
+                    <br><br>
+
+                    Welcome to Life Protection Company Ltd.
+
+                    <br><br>
+
+                    How can I help you?
+
+                </div>
+
+            </div>
+
+
+            <div class="chat-suggestions">
+
+                <button
+                    onclick="sendQuickMessage('What insurance types are available?')"
+                >
+                    Insurance types
+                </button>
+
+                <button
+                    onclick="sendQuickMessage('How does the premium calculator work?')"
+                >
+                    Premium calculator
+                </button>
+
+                <button
+                    onclick="sendQuickMessage('Where can I find policy documents?')"
+                >
+                    Policy documents
+                </button>
+
+            </div>
+
+
+            <div class="chat-input-area">
+
+                <input
+                    type="text"
+                    id="chatInput"
+                    placeholder="Type your question..."
+                >
+
+                <button
+                    id="chatSend"
+                >
+                    Send
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHY CHOOSE US
+===================================================== -->
+
+<section class="section why-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span>
+                WHY LIFE PROTECTION
+            </span>
+
+            <h2>
+                Protection Made Simple
+            </h2>
+
+        </div>
+
+
+        <div class="why-grid">
+
+            <div class="why-card">
+
+                <div>
+                    🛡️
+                </div>
+
+                <h3>
+                    Multiple Insurance Options
+                </h3>
+
+                <p>
+                    Explore different insurance categories
+                    from one convenient website.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div>
+                    📄
+                </div>
+
+                <h3>
+                    Easy Policy Access
+                </h3>
+
+                <p>
+                    View and download available policy
+                    information documents.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div>
+                    💬
+                </div>
+
+                <h3>
+                    Customer Assistance
+                </h3>
+
+                <p>
+                    Get general assistance while exploring
+                    insurance options.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div>
+                    🔐
+                </div>
+
+                <h3>
+                    Secure Process
+                </h3>
+
+                <p>
+                    Use authorised payment and insurance
+                    processes for customer transactions.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section
+    class="section contact-section"
+    id="contact"
+>
+
+    <div class="container">
+
+        <div class="contact-box">
+
+            <div class="contact-text">
+
+                <span>
+                    CONTACT US
+                </span>
+
+                <h2>
+                    Let's Protect What Matters.
+                </h2>
+
+                <p>
+                    Contact Life Protection Company Ltd.
+                    for general insurance assistance and
+                    information.
+                </p>
+
+            </div>
+
+
+            <div class="contact-details">
+
+                <div>
+                    <strong>
+                        📍 Address
+                    </strong>
+
+                    <span>
+                        Suncity, Bandlaguda,
+                        Opposite Pantaloons,
+                        500091
+                    </span>
+
+                </div>
+
+
+                <div>
+                    <strong>
+                        📞 Phone
+                    </strong>
+
+                    <span>
+                        9059056219
+                    </span>
+
+                </div>
+
+
+                <div>
+                    <strong>
+                        ✉️ Email
+                    </strong>
+
+                    <span>
+                        mrajeshkhanna9@gmail.com
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="container footer-grid">
+
+
+        <div>
+
+            <div class="footer-logo">
+
+                🛡️
+
+                <strong>
+                    Life Protection Company Ltd.
+                </strong>
+
+            </div>
+
+            <p>
+                Complete insurance protection for
+                you, your family and your future.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#policy-documents">
+                Policy Documents
+            </a>
+
+            <a href="#insurance">
+                Insurance
+            </a>
+
+            <a href="#calculator">
+                Premium Calculator
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Contact
+            </h4>
+
+            <p>
+                📞 9059056219
+            </p>
+
+            <p>
+                ✉️ mrajeshkhanna9@gmail.com
+            </p>
+
+            <p>
+                📍 Suncity, Bandlaguda,
+                Opposite Pantaloons,
+                500091
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <div class="container">
+
+            © 2026 Life Protection Company Ltd.
+            All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     FLOATING CHAT BUTTON
+===================================================== -->
+
+<button
+    class="floating-chat"
+    onclick="document.getElementById('chat').scrollIntoView({behavior:'smooth'})"
+    aria-label="Open customer assistance"
+>
+    💬
+</button>
+
+
+<script src="script.js"></script>
+
 </body>
+
 </html>
