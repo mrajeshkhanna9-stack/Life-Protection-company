@@ -1561,3 +1561,99 @@ footer {
     }
 
 }
+
+/* =====================================================
+   LIFE INSURANCE DOCUMENTS
+===================================================== */
+
+.policy-doc-btn {
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 13px 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #102a56;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    transition: .2s;
+}
+
+.policy-doc-btn:hover {
+    background: #0b8179;
+}
+
+.life-documents {
+    display: none;
+
+    margin-top: 10px;
+
+    border:
+        1px solid #e1e8ef;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    background: #f8fafc;
+}
+
+.life-documents.show {
+    display: block;
+}
+
+.life-documents a {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 12px 13px;
+
+    color: #34445c;
+
+    font-size: 12px;
+
+    border-bottom:
+        1px solid #e5eaf0;
+
+    transition: .2s;
+}
+
+.life-documents a:last-child {
+    border-bottom: none;
+}
+
+.life-documents a:hover {
+    background: #eaf6f4;
+
+    color: #0b8179;
+}
+
+.life-documents a span {
+    color: #0b8179;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
